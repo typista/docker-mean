@@ -18,8 +18,6 @@ RUN yum -y install mongodb-org
 
 ADD files/etc_init.d_nginx /etc/init.d/nginx
 ADD files/nginx.conf /usr/local/nginx/conf/
-ADD files/php_exec /usr/local/nginx/conf/
-ADD files/php_ssl_exec /usr/local/nginx/conf/
 ADD files/html/app.js /tmp/
 ADD files/html/front/index.html /tmp/
 ADD files/html/front/list.html /tmp/
