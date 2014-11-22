@@ -49,6 +49,7 @@ chown -R nginx: $LOG
 
 mkdir -p /data/db
 /usr/bin/mongod &
+crontab /root/crontab.txt
 /etc/init.d/nginx start
 /etc/init.d/crond start
 /usr/bin/tail -f /dev/null
