@@ -49,9 +49,6 @@ chown -R nginx: $LOG
 
 mkdir -p /data/db
 /usr/bin/mongod &
-/etc/init.d/php-fastcgi start
-cd $HTML
-/usr/bin/forever --minUptime=1000 --spinSleepTime=1000 -w start app.js
-#/usr/local/nginx/sbin/nginx -g "daemon off;"
 /etc/init.d/nginx start
+/etc/init.d/crond start
 /usr/bin/tail -f /dev/null
