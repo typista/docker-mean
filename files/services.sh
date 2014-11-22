@@ -9,24 +9,24 @@ HOSTNAME=`hostname`
 ROOT=/var/www/$HOSTNAME
 HTML=$ROOT/html
 REPO=mean
-BASE=https://raw.githubusercontent.com/typista/docker-$REPO/master/files
+BASE=https://raw.githubusercontent.com/typista/docker-$REPO/master/files/html
 if [ ! -e $HTML ]; then
 	mkdir -p $HTML
-	cp /tmp/app.js $HTML
 	FRONT=$HTML/front
 	DIST=$HTML/dist
 	ANGULAR=$DIST/js/angular
 	mkdir $FRONT
 	mkdir -p $ANGULAR
-	wget $BASE/index.html -O $FRONT
-	wget $BASE/list.html -O $FRONT
-	wget $BASE/edit.html -O $FRONT
-	wget $BASE/angular.js -O $ANGULAR
-	wget $BASE/angular.min.js -O $ANGULAR
-	wget $BASE/angular-resource.js -O $ANGULAR
-	wget $BASE/angular-resource.min.js -O $ANGULAR
-	wget $BASE/angular-route.js -O $ANGULAR
-	wget $BASE/angular-route.min.js -O $ANGULAR
+	wget $BASE/index.js -O $HTML
+	wget $BASE/front/index.html -O $FRONT
+	wget $BASE/front/list.html -O $FRONT
+	wget $BASE/front/edit.html -O $FRONT
+	wget $BASE/dist/js/angular/angular.js -O $ANGULAR
+	wget $BASE/dist/js/angular/angular.min.js -O $ANGULAR
+	wget $BASE/dist/js/angular/angular-resource.js -O $ANGULAR
+	wget $BASE/dist/js/angular/angular-resource.min.js -O $ANGULAR
+	wget $BASE/dist/js/angular/angular-route.js -O $ANGULAR
+	wget $BASE/dist/js/angular/angular-route.min.js -O $ANGULAR
 	cd $HTML
 	npm install -g grunt-cli
 	npm install -g express && npm link express
