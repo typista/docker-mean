@@ -30,5 +30,10 @@ else
 	chmod +x $BOOT_OFF
 	chmod +x $REMOVE
 	$BOOT
+    NGINX_SRC=src/nginx-host.conf
+    NGINX_DST=dst/$__HOSTNAME__-$__PORT__.conf
+    cat $NGINX_SRC | sed -r "s/__HOSTNAME__/$__HOSTNAME__/g" > $NGINX_DST
+    sed -r -i "s/__FQDN__/$__FQDN__/g" $NGINX_DST
+    sed -r -i "s/__PORT__/$__PORT__/g" $NGINX_DST
 fi
 

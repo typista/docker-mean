@@ -1,36 +1,19 @@
 #http://qiita.com/hnakamur/items/0b72590136cece29faee
 FROM typista/nginx-nodejs
-RUN yum update -y
-
-ADD files/mongodb.repo /etc/yum.repos.d/mongodb.repo
-
-# install mongodb
-RUN yum -y install mongodb-org
-# http://blog.simtter.com/yeomanを使ってmeanmongodbexpressangularjsnode-jsを作成しよう/
-#RUN npm install -g yo grunt-cli bower
-#RUN npm update -g
-#RUN npm update -g yo
-#RUN npm install -g generator-angular-fullstack
-#RUN npm install -g node-inspector
-#RUN npm install -g express && npm link express
-#RUN npm install -g body-parser && npm link body-parser
-#RUN npm install -g mongodb && npm link mongodb
-
-ADD files/etc_init.d_nginx /etc/init.d/nginx
-ADD files/nginx.conf /usr/local/nginx/conf/
-ADD files/html/app.js /tmp/
-ADD files/html/front/index.html /tmp/
-ADD files/html/front/list.html /tmp/
-ADD files/html/front/edit.html /tmp/
-ADD files/html/dist/js/angular/angular.js /tmp/
-ADD files/html/dist/js/angular/angular.min.js /tmp/
-ADD files/html/dist/js/angular/angular-resource.js /tmp/
-ADD files/html/dist/js/angular/angular-resource.min.js /tmp/
-ADD files/html/dist/js/angular/angular-route.js /tmp/
-ADD files/html/dist/js/angular/angular-route.min.js /tmp/
-ADD files/services.sh /etc/services.sh
-RUN chmod +x /etc/services.sh
-RUN chmod +x /etc/init.d/nginx
+RUN wget https://raw.githubusercontent.com/typista/docker-mean/master/files/etc_init.d_nginx -O /root/etc_init.d_nginx && \
+	wget https://raw.githubusercontent.com/typista/docker-mean/master/files/nginx.conf -O /root/nginx.conf && \
+	wget https://raw.githubusercontent.com/typista/docker-mean/master/files/services.sh -O /root/services.sh && \
+	wget https://raw.githubusercontent.com/typista/docker-mean/master/files/monitor_node.sh -O /root/monitor_node.sh && \
+	wget https://raw.githubusercontent.com/typista/docker-mean/master/files/mongodb.repo -O /etc/yum.repos.d/mongodb.repo && \
+	echo "/root/monitor_node.sh" >> /root/start.sh && \
+	yum update -y && \
+	yum -y install mongodb-org && \
+	cp /root/etc_init.d_nginx /etc/init.d/nginx && \
+	cp /root/services.sh /etc/services.sh && \
+	cp /root/nginx.conf /usr/local/nginx/conf/nginx.conf && \
+	chmod +x /etc/init.d/nginx && \
+	chmod +x /etc/services.sh && \
+	chmod +x /root/monitor_node.sh
 EXPOSE 80
 ENTRYPOINT /etc/services.sh
 

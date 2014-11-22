@@ -8,6 +8,8 @@ fi
 HOSTNAME=`hostname`
 ROOT=/var/www/$HOSTNAME
 HTML=$ROOT/html
+REPO=mean
+BASE=https://raw.githubusercontent.com/typista/docker-$REPO/master/files
 if [ ! -e $HTML ]; then
 	mkdir -p $HTML
 	cp /tmp/app.js $HTML
@@ -16,16 +18,17 @@ if [ ! -e $HTML ]; then
 	ANGULAR=$DIST/js/angular
 	mkdir $FRONT
 	mkdir -p $ANGULAR
-	cp /tmp/index.html $FRONT
-	cp /tmp/list.html $FRONT
-	cp /tmp/edit.html $FRONT
-	cp /tmp/angular.js $ANGULAR
-	cp /tmp/angular.min.js $ANGULAR
-	cp /tmp/angular-resource.js $ANGULAR
-	cp /tmp/angular-resource.min.js $ANGULAR
-	cp /tmp/angular-route.js $ANGULAR
-	cp /tmp/angular-route.min.js $ANGULAR
+	wget $BASE/index.html -O $FRONT
+	wget $BASE/list.html -O $FRONT
+	wget $BASE/edit.html -O $FRONT
+	wget $BASE/angular.js -O $ANGULAR
+	wget $BASE/angular.min.js -O $ANGULAR
+	wget $BASE/angular-resource.js -O $ANGULAR
+	wget $BASE/angular-resource.min.js -O $ANGULAR
+	wget $BASE/angular-route.js -O $ANGULAR
+	wget $BASE/angular-route.min.js -O $ANGULAR
 	cd $HTML
+	npm install -g grunt-cli
 	npm install -g express && npm link express
 	npm install -g body-parser && npm link body-parser
 	npm install -g mongodb && npm link mongodb
