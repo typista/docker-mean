@@ -17,16 +17,16 @@ if [ ! -e $HTML ]; then
 	ANGULAR=$DIST/js/angular
 	mkdir $FRONT
 	mkdir -p $ANGULAR
-	wget $BASE/index.js -O $HTML
-	wget $BASE/front/index.html -O $FRONT
-	wget $BASE/front/list.html -O $FRONT
-	wget $BASE/front/edit.html -O $FRONT
-	wget $BASE/dist/js/angular/angular.js -O $ANGULAR
-	wget $BASE/dist/js/angular/angular.min.js -O $ANGULAR
-	wget $BASE/dist/js/angular/angular-resource.js -O $ANGULAR
-	wget $BASE/dist/js/angular/angular-resource.min.js -O $ANGULAR
-	wget $BASE/dist/js/angular/angular-route.js -O $ANGULAR
-	wget $BASE/dist/js/angular/angular-route.min.js -O $ANGULAR
+	wget $BASE/index.js -O $HTML/
+	wget $BASE/front/index.html -O $FRONT/
+	wget $BASE/front/list.html -O $FRONT/
+	wget $BASE/front/edit.html -O $FRONT/
+	wget $BASE/dist/js/angular/angular.js -O $ANGULAR/
+	wget $BASE/dist/js/angular/angular.min.js -O $ANGULAR/
+	wget $BASE/dist/js/angular/angular-resource.js -O $ANGULAR/
+	wget $BASE/dist/js/angular/angular-resource.min.js -O $ANGULAR/
+	wget $BASE/dist/js/angular/angular-route.js -O $ANGULAR/
+	wget $BASE/dist/js/angular/angular-route.min.js -O $ANGULAR/
 	cd $HTML
 	npm install -g grunt-cli
 	npm install -g express && npm link express
