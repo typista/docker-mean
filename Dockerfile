@@ -5,7 +5,7 @@ RUN wget https://raw.githubusercontent.com/typista/docker-mean/master/files/entr
 	wget https://raw.githubusercontent.com/typista/docker-mean/master/files/mongodb.repo -O /etc/yum.repos.d/mongodb.repo && \
 	yum update -y && \
 	yum -y install mongodb-org && \
-	chmod +x /etc/entrypoint.sh && \
+	chmod +x /etc/entrypoint.sh
 #EXPOSE 80
 #ENTRYPOINT /etc/entrypoint.sh
 
