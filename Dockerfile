@@ -3,7 +3,6 @@ FROM typista/nginx-nodejs
 #FROM typista/nginx-nodejs:0.7
 RUN wget https://raw.githubusercontent.com/typista/docker-mean/master/files/entrypoint.sh -O /etc/entrypoint.sh && \
 	wget https://raw.githubusercontent.com/typista/docker-mean/master/files/mongodb.repo -O /etc/yum.repos.d/mongodb.repo && \
-	echo "/root/monitor_node.sh" >> /root/start.sh && \
 	yum update -y && \
 	yum -y install mongodb-org && \
 	chmod +x /etc/entrypoint.sh && \
