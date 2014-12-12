@@ -66,6 +66,9 @@ fi
 MONITOR_NGINX=/root/export/monitor_nginx.sh
 if [ ! -f $MONITOR_NGINX ]; then
 	wget $URL_GIT/monitor_nginx.sh -O $MONITOR_NGINX
+fi
+ISDEFUALT=`grep $MONITOR_NGINX $CRON_SHELL | wc -l`
+if [ $ISDEFUALT -eq 0 ]; then
 	echo $MONITOR_NGINX >> $CRON_SHELL
 fi
 if [ ! -x $MONITOR_NGINX ]; then
@@ -74,6 +77,9 @@ fi
 MONITOR_NODE=/root/export/monitor_node.sh
 if [ ! -f $MONITOR_NODE ]; then
 	wget $URL_GIT/monitor_node.sh -O $MONITOR_NODE
+fi
+ISDEFUALT=`grep $MONITOR_NODE $CRON_SHELL | wc -l`
+if [ $ISDEFUALT -eq 0 ]; then
 	echo $MONITOR_NODE >> $CRON_SHELL
 fi
 if [ ! -x $MONITOR_NODE ]; then
