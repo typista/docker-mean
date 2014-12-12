@@ -1,1 +1,1 @@
-* * * * * /root/startApp.sh 2>&1 1>/dev/null
+* * * * * /root/export/start.sh 2>&1 1>/dev/null
